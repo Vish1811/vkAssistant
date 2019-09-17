@@ -9,6 +9,8 @@ import datetime
 #Python supports many speech recognition engines and APIs, including Google Speech Engine
 import speech_recognition as sr
 
+#module used to get an informaton from the wikipedia
+import wikipedia
 
 #initailizing the module which convert text to speech
 engine = pyttsx3.init('espeak')
@@ -33,6 +35,41 @@ def wishMe():
         speak("Good Eveninng")
     speak("Hello i am vk's Assitant How may i help you")
 
+#this function takes the speech as input
+def takeCommand():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening.....")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+    try:
+        print("Recognizing.....")
+        query=r.recognize_google(audio,language='en-in')
+        print(f"User said:{query.lower()}\n")
+    except Excepton as e:
+        print(e)
+        print("Say that again please....")
+        return "None"
+    return query
+
 
 if __name__== "__main__":
     wishMe()
+    count=1 # count takes the number of command
+    while(count!=0):
+        query = takeCommand().lower()
+        print(f"User said:{query}\n")
+
+        #logic for executing commands
+
+        
+        #for searching wikipedia
+        if 'wikipedia' in query:
+            speak('Searching wikipedia....')
+            query = query.replace("wikipedia","")
+            results = wikipedia.summary(query,sentences=2)
+            speak("According to wikipedia")
+            print(results) 
+            speak(results)
+
+        count=count-1
