@@ -6,11 +6,17 @@ import pyttsx3
 #module to get the current date and time
 import datetime
 
+#module used to activate some of the some functions of the webbrowser
+import webbrowser
+
 #Python supports many speech recognition engines and APIs, including Google Speech Engine
 import speech_recognition as sr
 
 #module used to get an informaton from the wikipedia
 import wikipedia
+
+#module allows us to handle various operations regarding time, its conversions and representation
+import time 
 
 #initailizing the module which convert text to speech
 engine = pyttsx3.init('espeak')
@@ -71,5 +77,25 @@ if __name__== "__main__":
             speak("According to wikipedia")
             print(results) 
             speak(results)
+            
+        #tell me about Time
+        elif 'the time' in query:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"Sir,the time is {strTime}")
+            
+        #for opening websites like youtube,google,codeforces etc.  
+        elif 'open youtube'in query:
+            webbrowser.open_new_tab("https://www.youtube.com/")
+            speak("youtube opened")
+            print("youtube opened")
+        elif 'open google'in query:
+            webbrowser.open_new_tab("https://www.google.com")
+            speak("google opened")
+            print("google opened")
+        elif 'open codeforces'in query:
+            webbrowser.open_new_tab("https://www.codeforces.com/")
+            speak("codeforces opened")
+            print("codeforces opened")
+
 
         count=count-1
