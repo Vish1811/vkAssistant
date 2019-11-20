@@ -20,3 +20,7 @@ What can it do... Based on your voice:
 6.IT CAN TELL YOU THE CURRENT WEATHER Conditions in your CITY
 
 7.IT CAN PLAY MUSIC
+
+Futher modifications to be done:
+1.Adding a Joke Section To It.
+2.
