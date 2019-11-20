@@ -163,5 +163,12 @@ if __name__== "__main__":
         #weather report
         elif "today's weather" in query:
             get_weather("lucknow")
-
+        # not at home
+        elif "where is vishnu" in query:
+            #tellinfo();
+            speak(message)
+        elif "record message" in query:
+            message=query[14:]
+            print(message)
+            #speak(smessage)
         count=count-1
