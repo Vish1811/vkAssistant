@@ -96,6 +96,17 @@ if __name__== "__main__":
             webbrowser.open_new_tab("https://www.codeforces.com/")
             speak("codeforces opened")
             print("codeforces opened")
-
+        
+        #play music on youtube
+        elif 'play saki saki'in query:
+            webbrowser.open_new_tab("https://www.youtube.com/watch?v=-m_WlHjFvPE&list=RDMM-m_WlHjFvPE&start_radio=1")
+        
+        #play music from folder
+        elif 'play music'in query:
+            
+            music_dir = "//home//vishnu//Music"
+            songs = os.listdir(music_dir)
+            print(songs[1])
+            webbrowser.open(os.path.join(music_dir,songs[1]))
 
         count=count-1

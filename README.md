@@ -23,4 +23,4 @@ What can it do... Based on your voice:
 
 Futher modifications to be done:
 1.Adding a Joke Section To It.
-2.
+2.Not at Home Section
