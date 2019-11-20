@@ -57,6 +57,26 @@ def takeCommand():
         print("Say that again please....")
         return "None"
     return query
+# Source function for the news command
+#uses the api of the times of india for fetching the news
+def Parsefeed():
+    f = feedparser.parse("http://timesofindia.indiatimes.com/rssfeedstopstories.cms")
+    ICON_PATH = os.getcwd() + "/icon.ico"
+    notify2.init('News Notify')
+
+    for newsitem in f['items']:
+        n = notify2.Notification(newsitem['title'], newsitem['summary'], icon=ICON_PATH)
+        n.set_urgency(notify2.URGENCY_NORMAL)
+        n.show()
+        n.set_timeout(15)
+        #time.sleep(5)
+        print(newsitem['title'])
+        speak(newsitem['title'])
+        print(newsitem['summary'])
+        speak(newsitem['summary'])
+        print('\n')
+    speak("That's all for today")
+
 
 
 if __name__== "__main__":
@@ -108,5 +128,12 @@ if __name__== "__main__":
             songs = os.listdir(music_dir)
             print(songs[1])
             webbrowser.open(os.path.join(music_dir,songs[1]))
+        
+        #Aj ke samaachar
+        elif "today's news" in query:
+            try:
+                Parsefeed()
+            except:
+                print("Error")
 
         count=count-1
