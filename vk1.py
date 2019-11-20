@@ -77,6 +77,31 @@ def Parsefeed():
         print('\n')
     speak("That's all for today")
 
+# source function for the weather news
+# uses the api of the openweathermap site for fetching the weather report  
+def format_response(weather):
+	try:
+		name = weather['name']
+		desc = weather['weather'][0]['description']
+		temp = weather['main']['temp']
+
+		final_str = 'City: %s \nConditions: %s \nTemperature (°F): %s' % (name, desc, temp)
+		speak("Apke sahar" + name+"main mausam kuch iss prakar hai" )
+		speak("It's all "+desc+"in the sky" )
+		speak("Tapman degree fahrenheit mai")
+		speak(temp)
+		
+		
+	except:
+		final_str = 'There was a problem retrieving that information'
+def get_weather(city):
+	weather_key = 'a4aa5e3d83ffefaba8c00284de6ef7c3'
+	url = 'https://api.openweathermap.org/data/2.5/weather'
+	params = {'APPID': weather_key, 'q': city, 'units': 'imperial'}
+	response = requests.get(url, params=params)
+	weather = response.json()
+	format_response(weather)
+
 
 
 if __name__== "__main__":
@@ -135,5 +160,8 @@ if __name__== "__main__":
                 Parsefeed()
             except:
                 print("Error")
+        #weather report
+        elif "today's weather" in query:
+            get_weather("lucknow")
 
         count=count-1
